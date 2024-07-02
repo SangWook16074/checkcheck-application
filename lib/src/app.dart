@@ -6,6 +6,7 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: LoginPage());
+    return Scaffold(
+      body: LoginPage());
   }
 }
