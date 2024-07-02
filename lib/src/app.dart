@@ -1,3 +1,4 @@
+import 'package:checkcheck_project/src/pages/sign_up_page.dart';
 import 'package:flutter/material.dart';
 
 class App extends StatelessWidget {
@@ -5,6 +6,8 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      body: SignupPage(),
+    );
   }
 }
