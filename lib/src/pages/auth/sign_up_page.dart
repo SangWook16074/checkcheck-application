@@ -14,8 +14,8 @@ class SignupPage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-              Column(
+            children: [
+              const Column(
                 children: <Widget>[
                   SizedBox(height: 60.0),
                   Text(

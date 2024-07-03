@@ -8,9 +8,12 @@ class CustomTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextField(
       controller: controller,
-                decoration:
-                    InputDecoration(
-                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(30.0)), hintText: '이메일'),
-              );
+      decoration: InputDecoration(
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(30.0),
+        ),
+        hintText: '이메일',
+      ),
+    );
   }
 }
