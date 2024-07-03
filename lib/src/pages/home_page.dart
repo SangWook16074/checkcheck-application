@@ -1,3 +1,5 @@
+import 'package:checkcheck_project/src/pages/login_page.dart';
+import 'package:checkcheck_project/src/pages/main_page.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -16,7 +18,7 @@ class _HomePageState extends State<HomePage> {
       body: IndexedStack(
         index: _pageIndex,
         children: [
-          const HomePage(),
+          const MainPage(),
           Container(color: Colors.red),
           Container(color: Colors.green),
           Container(color: Colors.blue),
