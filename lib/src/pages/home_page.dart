@@ -25,12 +25,32 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
-        items: [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: "홈"),
-          BottomNavigationBarItem(icon: Icon(Icons.handshake), label: "수강신청"),
+        currentIndex: _pageIndex,
+        items: const [
           BottomNavigationBarItem(
-              icon: Icon(Icons.check_circle), label: "출결현황"),
-          BottomNavigationBarItem(icon: Icon(Icons.settings), label: "마이페이지"),
+              icon: Icon(
+                Icons.home,
+                color: Colors.black,
+              ),
+              label: "홈"),
+          BottomNavigationBarItem(
+              icon: Icon(
+                Icons.handshake,
+                color: Colors.black,
+              ),
+              label: "수강신청"),
+          BottomNavigationBarItem(
+              icon: Icon(
+                Icons.check_circle,
+                color: Colors.black,
+              ),
+              label: "출결현황"),
+          BottomNavigationBarItem(
+              icon: Icon(
+                Icons.settings,
+                color: Colors.black,
+              ),
+              label: "마이페이지"),
         ],
       ),
     );
