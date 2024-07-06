@@ -1,4 +1,4 @@
-import 'package:checkcheck_project/src/page/login_page.dart';
+import 'package:checkcheck_project/src/pages/home_page.dart';
 import 'package:flutter/material.dart';
 
 class App extends StatelessWidget {
@@ -7,6 +7,7 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: LoginPage());
+      body: const HomePage(),
+    );
   }
 }
