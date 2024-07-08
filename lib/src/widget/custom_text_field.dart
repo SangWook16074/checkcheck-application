@@ -11,13 +11,9 @@ class CustomTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextField(
       controller: controller,
-      obscureText: obscureText!,
                 decoration:
                     InputDecoration(
-                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(30.0)), 
-                      hintText: hintText,
-                      suffixIcon: suffixIcon,
-                      ),
+                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(30.0)), hintText: '이메일'),
               );
   }
 }
