@@ -16,14 +16,20 @@ class LoginPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              CustomTextField(),
+              CustomTextField(
+                hintText: "이메일",
+              ),
               SizedBox(height: 20), 
 
-              CustomTextField(),
+              CustomTextField(
+                hintText: "비밀번호",
+                obscureText: true,
+              ),
               SizedBox(height: 20), 
 
               CustomButton(label: "로그인", onPressed: () {},),
               SizedBox(height: 20),
+
               GestureDetector(
                 onTap: () {},
                 child: Text('회원가입',
