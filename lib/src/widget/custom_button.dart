@@ -9,11 +9,13 @@ class CustomButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.grey,
+                  backgroundColor: Colors.orange,
                   minimumSize: Size(500, 60),
-                  shape: StadiumBorder(),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15.0)
+                  ),
                   textStyle: TextStyle(
-                    fontSize: 25,
+                    fontSize: 20,
                   ),
                   foregroundColor: Colors.white,
                 ),
