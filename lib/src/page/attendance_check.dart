@@ -1,7 +1,9 @@
 import 'package:checkcheck_project/src/widget/custom_button.dart';
 import 'package:checkcheck_project/src/widget/custom_scrollbar.dart';
 import 'package:checkcheck_project/src/widget/custom_text_field.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class Attendance extends StatefulWidget {
   @override
@@ -9,8 +11,8 @@ class Attendance extends StatefulWidget {
 }
 
 class _AttendanceState extends State<Attendance> {
-  final List<String> attendances = List.generate(7, (index) => '시각디자인실습            |                    은봉관 302호');
   final List<FocusNode> focusNodes = List.generate(7, (_) => FocusNode());
+  int selectedIndex = -1; // 선택된 항목의 인덱스
 
   @override
   void dispose() {
@@ -48,39 +50,11 @@ class _AttendanceState extends State<Attendance> {
                   suffixIcon: Icon(Icons.search),
                 ),
                 SizedBox(height: 5),
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    'tip. 초성 검색도 가능해요 ex) ㅁㄹㅎ > 물리학',
-                    style: TextStyle(color: Colors.white, fontSize: 14),
-                    textAlign: TextAlign.left,
-                  ),
-                ),
+                _tip(),
                 SizedBox(height: 5),
-                for (int i = 0; i < attendances.length; i++)
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 5.0),
-                    child: TextField(
-                      focusNode: focusNodes[i],
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(15.0),
-                        ),
-                        hintText: attendances[i],
-                        hintStyle: TextStyle(
-                          color: focusNodes[i].hasFocus ? Colors.black : Colors.white,
-                        ),
-                        fillColor: focusNodes[i].hasFocus ? Colors.orange : Colors.black,
-                        filled: true,
-                      ),
-                      style: TextStyle(color: Colors.white),
-                      onTap: () {
-                        setState(() {
-                          FocusScope.of(context).requestFocus(focusNodes[i]);
-                        });
-                      },
-                    ),
-                  ),
+                
+                ..._attendance(),
+
                 SizedBox(height: 20),
                 CustomButton(label: '출석 체크하기', onPressed: () {
                   showModalBottomSheet(
@@ -99,18 +73,41 @@ class _AttendanceState extends State<Attendance> {
                             ],),
                           ),
                           SizedBox(height: 15),
-                          TextField(
-                            decoration: InputDecoration(border: OutlineInputBorder(borderRadius: BorderRadius.circular(15.0)),
-                            hintText: '월요일   |   9:00 ~ 11:00',
-                            hintStyle: TextStyle(color: Colors.white),
-                          )),
+                          Container(
+                            height: 60,
+                            width: 400,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(15.0),
+                              border: Border.all(color: Colors.white),
+                            ),
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  const Text('월요일            |          09:00 ~ 11:00', style: TextStyle(color: Colors.white, fontSize: 20), textAlign: TextAlign.center,),
+                                ],
+                              ),),
+                          ),
                           SizedBox(height: 20,),
-                          TextField(
-                            textAlign: TextAlign.center,
-                            decoration: InputDecoration(border: OutlineInputBorder(borderRadius: BorderRadius.circular(15.0)),
-                            hintText: '은봉관 302호',
-                            hintStyle: TextStyle(color: Colors.white)
-                          )),
+                            Container(
+                              height: 60,
+                              width: 400,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(15.0),
+                                border: Border.all(color: Colors.white),
+                              ),
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    const Text('은봉관 302호', style: TextStyle(color: Colors.white, fontSize: 20), textAlign: TextAlign.center,),
+                                  ],
+                                ),),
+                                ),
                           SizedBox(height: 20),
                           CustomButton(label: '출석 체크하기', onPressed: () {})
                       ],),
@@ -124,5 +121,52 @@ class _AttendanceState extends State<Attendance> {
         ),
       ),
     );
+  }
+  
+  List<Widget> _attendance() {
+    return List.generate(7, (index) => GestureDetector(
+      onTap: () {
+        setState(() {
+          selectedIndex = index;
+        });
+      },
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Container(
+          height: 60,
+          width: 400,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(15.0),
+            border: Border.all(color: Colors.white),
+            color: selectedIndex == index ? Colors.orange : Colors.transparent,
+          ),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  '시각디자인 실습           |                   은봉관 302 호',
+                  style: TextStyle(
+                    color: selectedIndex == index ? Colors.black : Colors.white,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    ));
+  }
+  
+  /// 초성 검색도 가능하다는 tip 문구
+  Widget _tip() {
+    return const Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                'tip. 초성 검색도 가능해요 ex) ㅁㄹㅎ > 물리학',
+                style: TextStyle(color: Colors.white, fontSize: 14),
+                textAlign: TextAlign.left,
+              ),);
   }
 }

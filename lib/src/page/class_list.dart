@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:checkcheck_project/src/widget/custom_scrollbar.dart';
 
 class classList extends StatelessWidget {
-  final List<String> classes = List.generate(10, (index) => '강의명');
 
   @override
   Widget build(BuildContext context) {
@@ -21,27 +20,17 @@ class classList extends StatelessWidget {
             // 스크롤 가능한 영역 추가
             child: Column(
               children: [
-                CustomTextField(
-                  hintText: '검색하기',
-                  suffixIcon: Icon(Icons.search),
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal:  8.0),
+                  child: CustomTextField(
+                    hintText: '검색하기',
+                    suffixIcon: Icon(Icons.search),
+                  ),
                 ),
                 SizedBox(height: 5),
-
                 _tip(),
-              SizedBox(height: 5),
-
-              for (var classList in classes)
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: TextField(
-                    decoration: InputDecoration(border: OutlineInputBorder(borderRadius: BorderRadius.circular(15.0)),
-                    hintText: '강의명',
-                    hintStyle: TextStyle(color: Colors.white),
-                    suffix: CustomElevatedButton()),),
-                ),
-                SizedBox(height: 20),
-                
-
+              SizedBox(height: 5), ...
+              _classList(),
                 CustomButton(
                   label: "수강 신청하기",
                   onPressed: () {
@@ -57,6 +46,32 @@ class classList extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  /// 수강하는 과목들이 list로 보이고,
+  /// 강의명 옆에 출석체크 버튼이 있어서
+  /// 버튼을 눌러 출석체크가 가능함
+  List<Widget> _classList() {
+    return List.generate(10, (index) => Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      height: 60, 
+                      width: 400,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15.0),
+                        border: Border.all(color: Colors.white,),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(vertical:  8.0, horizontal: 16.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                          const Text('무용학개론', style: TextStyle(color: Colors.white),),
+                          CustomElevatedButton(),
+                        ],),
+                      ),
+                    ),
+                  ),);
   }
 
   /// 검색하기에서 초성 검색도 가능하다는 tip 문구
