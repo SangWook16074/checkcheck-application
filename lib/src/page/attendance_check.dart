@@ -1,6 +1,6 @@
 import 'package:checkcheck_project/src/widget/custom_button.dart';
-import 'package:checkcheck_project/src/widget/custom_scrollbar.dart';
 import 'package:checkcheck_project/src/widget/custom_text_field.dart';
+import 'package:checkcheck_project/src/widget/tip.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -11,16 +11,8 @@ class Attendance extends StatefulWidget {
 }
 
 class _AttendanceState extends State<Attendance> {
-  final List<FocusNode> focusNodes = List.generate(7, (_) => FocusNode());
   int selectedIndex = -1; // 선택된 항목의 인덱스
 
-  @override
-  void dispose() {
-    for (var focusNode in focusNodes) {
-      focusNode.dispose();
-    }
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +33,6 @@ class _AttendanceState extends State<Attendance> {
       backgroundColor: Colors.black,
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: CustomScrollbar(
           child: SingleChildScrollView(
             child: Column(
               children: [
@@ -50,7 +41,9 @@ class _AttendanceState extends State<Attendance> {
                   suffixIcon: Icon(Icons.search),
                 ),
                 SizedBox(height: 5),
-                _tip(),
+
+                Tip(), // tip 문구
+                
                 SizedBox(height: 5),
                 
                 ..._attendance(),
@@ -119,8 +112,7 @@ class _AttendanceState extends State<Attendance> {
             ),
           ),
         ),
-      ),
-    );
+      );
   }
   
   List<Widget> _attendance() {
@@ -159,14 +151,4 @@ class _AttendanceState extends State<Attendance> {
     ));
   }
   
-  /// 초성 검색도 가능하다는 tip 문구
-  Widget _tip() {
-    return const Align(
-              alignment: Alignment.centerLeft,
-              child: Text(
-                'tip. 초성 검색도 가능해요 ex) ㅁㄹㅎ > 물리학',
-                style: TextStyle(color: Colors.white, fontSize: 14),
-                textAlign: TextAlign.left,
-              ),);
-  }
 }

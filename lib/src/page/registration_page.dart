@@ -1,12 +1,11 @@
 import 'package:checkcheck_project/src/page/class_list.dart';
 import 'package:checkcheck_project/src/widget/custom_button.dart';
 import 'package:checkcheck_project/src/widget/custom_elevated_botton.dart';
-import 'package:checkcheck_project/src/widget/custom_scrollbar.dart';
 import 'package:checkcheck_project/src/widget/custom_text_field.dart';
 import 'package:flutter/material.dart';
 
-class registation extends StatelessWidget {
-  final List<String> registations = List.generate(5, (index) => '강의명');
+class Registation extends StatelessWidget {
+  final List<String> Registations = List.generate(5, (index) => '강의명');
 
   @override
   Widget build(BuildContext context) {
@@ -14,12 +13,12 @@ class registation extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.black,
         leading: IconButton(icon: Icon(Icons.arrow_back_ios, color: Colors.white), onPressed: () {
-          Navigator.pop(context, MaterialPageRoute(builder: (context) => classList()));
+          Navigator.pop(context, (builder: (context) => classList()));
         }),
         title: const Text('수강신청', style: TextStyle(fontSize: 25, color: Colors.white))),
         backgroundColor: Colors.black,
       body: Padding(padding: const EdgeInsets.all(8.0),
-      child: CustomScrollbar(child: SingleChildScrollView(
+      child: SingleChildScrollView(
         child: Column(children: [
           CustomTextField(
             hintText: '검색하기',
@@ -30,8 +29,8 @@ class registation extends StatelessWidget {
           SizedBox(height: 20,),
           CustomButton(label: "수강 신청 요청 취소", onPressed: () {}),
         ],),
-      )),),
-    );
+      )),);
+    
   }
 
   /// 강의명 및 강사명이 보이고 신청하기 버튼을 통해 수강신청을 할 수 있게 함.
