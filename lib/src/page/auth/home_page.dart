@@ -1,4 +1,4 @@
-import 'package:checkcheck_project/src/pages/main_page.dart';
+import 'package:checkcheck_project/src/page/auth/main_page.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
