@@ -54,7 +54,7 @@ class _AttendanceState extends State<Attendance> {
                     context: context, 
                     builder: (context) {
                     return Container(
-                      color: Colors.black,
+                      color: Colors.orange,
                       padding: EdgeInsets.all(8.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
@@ -62,13 +62,17 @@ class _AttendanceState extends State<Attendance> {
                           Container(
                             width: MediaQuery.of(context).size.width * 0.9,
                             child: Column(children: [
-                              Text('시각디자인실습', style: TextStyle(color: Colors.white, fontSize: 20),)
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text('시각디자인실습', style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),),
+                              ),
+                              Divider(color: Colors.white, thickness: 2)
                             ],),
                           ),
                           SizedBox(height: 15),
                           Container(
                             height: 60,
-                            width: 400,
+                            width: double.infinity,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(15.0),
                               border: Border.all(color: Colors.white),
@@ -79,7 +83,7 @@ class _AttendanceState extends State<Attendance> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  const Text('월요일            |          09:00 ~ 11:00', style: TextStyle(color: Colors.white, fontSize: 20), textAlign: TextAlign.center,),
+                                  const Text('월요일            |          09:00 ~ 11:00', style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold), textAlign: TextAlign.center,),
                                 ],
                               ),),
                           ),
@@ -97,12 +101,13 @@ class _AttendanceState extends State<Attendance> {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
-                                    const Text('은봉관 302호', style: TextStyle(color: Colors.white, fontSize: 20), textAlign: TextAlign.center,),
+                                    const Text('은봉관 302호', style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold), textAlign: TextAlign.center,),
                                   ],
                                 ),),
                                 ),
                           SizedBox(height: 20),
-                          CustomButton(label: '출석 체크하기', onPressed: () {})
+                          CustomButton(label: '출석 체크하기', onPressed: () {},
+                          color: Colors.black,)
                       ],),
                     );
                   });
