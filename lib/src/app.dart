@@ -1,4 +1,4 @@
-import 'package:checkcheck_project/src/pages/home_page.dart';
+import 'package:checkcheck_project/src/page/home_page.dart';
 import 'package:flutter/material.dart';
 
 class App extends StatelessWidget {
