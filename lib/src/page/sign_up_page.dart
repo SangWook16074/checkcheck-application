@@ -16,6 +16,15 @@ class _SignupPageState extends State<SignupPage> {
       TextEditingController();
   final TextEditingController _nameController = TextEditingController();
 
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    _confirmPasswordController.dispose();
+    _nameController.dispose();
+    super.dispose();
+  }
+
   Future<void> _signup() async {
     // API 요청을 통해 회원가입 처리
   }
@@ -34,7 +43,7 @@ class _SignupPageState extends State<SignupPage> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               Column(
-                children: <Widget>[
+                children: const <Widget>[
                   Text(
                     "회원가입",
                     style: TextStyle(
@@ -71,7 +80,7 @@ class _SignupPageState extends State<SignupPage> {
                   ),
                 ],
               ),
-              SizedBox(height: 40),
+              const SizedBox(height: 40),
               CustomButton(
                 label: "시작하기",
                 onPressed: _signup,

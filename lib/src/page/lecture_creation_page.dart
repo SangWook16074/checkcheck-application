@@ -1,59 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:checkcheck_project/src/widget/custom_text_field.dart';
-import 'package:checkcheck_project/src/widget/custom_elevated_botton.dart';
+import 'package:checkcheck_project/src/widget/custom_elevated_button.dart';
 
 class LectureCreationPage extends StatelessWidget {
+  const LectureCreationPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      appBar: AppBar(
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios, color: Colors.white),
-          onPressed: () {
-            Navigator.pop(context); // 이전 페이지로 돌아가기
-          },
-        ),
-        title: Text(
-          '강의 개설',
-          style: TextStyle(fontSize: 24, color: Colors.white),
-        ),
-        backgroundColor: Colors.black,
-        titleSpacing: 0,
-      ),
+      appBar: _buildAppBar(context),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              CustomTextField(
-                hintText: '강의명',
-              ),
-              SizedBox(height: 20),
-              CustomTextField(
-                hintText: '강사명',
-              ),
-              SizedBox(height: 20),
-              CustomTextField(
-                hintText: '강의시간',
-                suffixIcon: Icon(Icons.access_time, color: Colors.grey),
-              ),
-              SizedBox(height: 20),
-              CustomTextField(
-                hintText: '수강신청기간',
-              ),
-              SizedBox(height: 20),
-              CustomTextField(
-                hintText: '강의 정보',
-                maxLines: 5,
-              ),
-              SizedBox(height: 20),
-              Text(
+              _buildLectureNameField(),
+              const SizedBox(height: 20),
+              _buildInstructorNameField(),
+              const SizedBox(height: 20),
+              _buildLectureTimeField(),
+              const SizedBox(height: 20),
+              _buildEnrollmentPeriodField(),
+              const SizedBox(height: 20),
+              _buildLectureInfoField(),
+              const SizedBox(height: 20),
+              const Text(
                 'tip. 입력하신 강의정보는 언제든지 바꿀 수 있어요',
                 style: TextStyle(color: Colors.grey),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               CustomElevatedButton()
             ],
           ),
@@ -61,8 +38,56 @@ class LectureCreationPage extends StatelessWidget {
       ),
     );
   }
-}
 
+  AppBar _buildAppBar(BuildContext context) {
+    return AppBar(
+      leading: IconButton(
+        icon: const Icon(Icons.arrow_back_ios, color: Colors.white),
+        onPressed: () {
+          Navigator.pop(context); // 이전 페이지로 돌아가기
+        },
+      ),
+      title: const Text(
+        '강의 개설',
+        style: TextStyle(fontSize: 24, color: Colors.white),
+      ),
+      backgroundColor: Colors.black,
+      titleSpacing: 0,
+    );
+  }
+
+  CustomTextField _buildLectureNameField() {
+    return const CustomTextField(
+      hintText: '강의명',
+    );
+  }
+
+  CustomTextField _buildInstructorNameField() {
+    return const CustomTextField(
+      hintText: '강사명',
+    );
+  }
+
+  CustomTextField _buildLectureTimeField() {
+    return const CustomTextField(
+      hintText: '강의시간',
+      suffixIcon: Icon(Icons.access_time, color: Colors.grey),
+    );
+  }
+
+  CustomTextField _buildEnrollmentPeriodField() {
+    return const CustomTextField(
+      hintText: '수강신청기간',
+    );
+  }
+
+  CustomTextField _buildLectureInfoField() {
+    return const CustomTextField(
+      hintText: '강의 정보',
+      maxLines: 5,
+    );
+  }
+}
 
 // 강의시간 옆에 눌러서 시간선택하려면 타임피커 사용해야하는건가요?
 
