@@ -1,9 +1,43 @@
 import 'package:flutter/material.dart';
 import 'package:checkcheck_project/src/widget/custom_text_field.dart';
-import 'package:checkcheck_project/src/widget/custom_elevated_button.dart';
+import 'package:checkcheck_project/src/page/lecture_listings_page.dart';
 
-class LectureCreationPage extends StatelessWidget {
+class LectureCreationPage extends StatefulWidget {
   const LectureCreationPage({super.key});
+
+  @override
+  _LectureCreationPageState createState() => _LectureCreationPageState();
+}
+
+class _LectureCreationPageState extends State<LectureCreationPage> {
+  final TextEditingController _lectureNameController = TextEditingController();
+  final TextEditingController _instructorNameController =
+      TextEditingController();
+  final TextEditingController _lecturePeriodController =
+      TextEditingController();
+  final TextEditingController _lectureTimeController = TextEditingController();
+  final TextEditingController _enrollmentPeriodController =
+      TextEditingController();
+  final TextEditingController _lectureInfoController = TextEditingController();
+
+  @override
+  void dispose() {
+    _lectureNameController.dispose();
+    _instructorNameController.dispose();
+    _lecturePeriodController.dispose();
+    _lectureTimeController.dispose();
+    _enrollmentPeriodController.dispose();
+    _lectureInfoController.dispose();
+    super.dispose();
+  }
+
+  Future<void> _selectLecturePeriod() async {
+    // 강의 기간 선택 로직 추가
+  }
+
+  Future<void> _selectLectureTime() async {
+    // 강의 시간 선택 로직 추가
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +54,8 @@ class LectureCreationPage extends StatelessWidget {
               const SizedBox(height: 20),
               _buildInstructorNameField(),
               const SizedBox(height: 20),
+              _buildLecturePeriodField(),
+              const SizedBox(height: 20),
               _buildLectureTimeField(),
               const SizedBox(height: 20),
               _buildEnrollmentPeriodField(),
@@ -31,7 +67,7 @@ class LectureCreationPage extends StatelessWidget {
                 style: TextStyle(color: Colors.grey),
               ),
               const SizedBox(height: 20),
-              CustomElevatedButton()
+              _buildElevatedButton(),
             ],
           ),
         ),
@@ -48,8 +84,8 @@ class LectureCreationPage extends StatelessWidget {
         },
       ),
       title: const Text(
-        '강의 개설',
-        style: TextStyle(fontSize: 24, color: Colors.white),
+        '            강의 개설',
+        style: TextStyle(fontSize: 28, color: Colors.white),
       ),
       backgroundColor: Colors.black,
       titleSpacing: 0,
@@ -57,58 +93,66 @@ class LectureCreationPage extends StatelessWidget {
   }
 
   CustomTextField _buildLectureNameField() {
-    return const CustomTextField(
+    return CustomTextField(
+      controller: _lectureNameController,
       hintText: '강의명',
     );
   }
 
   CustomTextField _buildInstructorNameField() {
-    return const CustomTextField(
-      hintText: '강사명',
+    return CustomTextField(
+      controller: _instructorNameController,
+      hintText: '강의자명',
+    );
+  }
+
+  CustomTextField _buildLecturePeriodField() {
+    return CustomTextField(
+      controller: _lecturePeriodController,
+      hintText: '강의기간                 00.00.00 ~ 00.00.00',
     );
   }
 
   CustomTextField _buildLectureTimeField() {
-    return const CustomTextField(
-      hintText: '강의시간',
-      suffixIcon: Icon(Icons.access_time, color: Colors.grey),
+    return CustomTextField(
+      controller: _lectureTimeController,
+      hintText: '강의시간                            00:00 ~ 00:00',
     );
   }
 
   CustomTextField _buildEnrollmentPeriodField() {
-    return const CustomTextField(
+    return CustomTextField(
+      controller: _enrollmentPeriodController,
       hintText: '수강신청기간',
     );
   }
 
   CustomTextField _buildLectureInfoField() {
-    return const CustomTextField(
+    return CustomTextField(
+      controller: _lectureInfoController,
       hintText: '강의 정보',
       maxLines: 5,
     );
   }
+
+  Widget _buildElevatedButton() {
+    return ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: Colors.orange,
+        foregroundColor: Colors.white,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(15.0),
+        ),
+      ),
+      onPressed: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => LectureListingsPage(),
+          ),
+        );
+      },
+      child: const Text('개설하기'),
+    );
+  }
 }
-
-// 강의시간 옆에 눌러서 시간선택하려면 타임피커 사용해야하는건가요?
-
-
-
-  // ElevatedButton(
-              //   style: ElevatedButton.styleFrom(
-              //     backgroundColor: Colors.orange,
-              //     foregroundColor: Colors.white,
-              //     shape: RoundedRectangleBorder(
-              //       borderRadius: BorderRadius.circular(20.0),
-              //     ),
-              //   ),
-              //   onPressed: () {
-              //     // 개설하기 버튼 눌렀을 때의 동작 정의하기
-              //   },
-              //   child: Padding(
-              //     padding: const EdgeInsets.symmetric(vertical: 16.0),
-              //     child: Text(
-              //       '개설하기',
-              //       style: TextStyle(fontSize: 18),
-              //     ),
-              //   ),
-              // ),

@@ -1,3 +1,4 @@
+import 'package:checkcheck_project/src/page/attendance_page.dart';
 import 'package:checkcheck_project/src/page/auth/home_page.dart';
 import 'package:checkcheck_project/src/page/lecture_listings_page.dart';
 import 'package:checkcheck_project/src/page/lecture_creation_page.dart';
@@ -11,7 +12,7 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: HomePage(),
+      body: const HomePage(),
     );
   }
 }

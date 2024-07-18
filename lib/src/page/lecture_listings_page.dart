@@ -1,6 +1,6 @@
+import 'package:checkcheck_project/src/page/lecture_listings_delete_page.dart';
 import 'package:flutter/material.dart';
 import 'package:checkcheck_project/src/widget/custom_text_field.dart';
-import 'package:checkcheck_project/src/view/lecture_item.dart';
 
 class LectureListingsPage extends StatefulWidget {
   @override
@@ -8,7 +8,15 @@ class LectureListingsPage extends StatefulWidget {
 }
 
 class _LectureListingsPageState extends State<LectureListingsPage> {
-  final List<String> lectures = List.generate(10, (index) => '강의명');
+  final List<Map<String, String>> lectures = [
+    {'title': '디자인 발상', 'location': '인관 203호'},
+    {'title': '그래픽 디자인 이해', 'location': '은봉관 304호'},
+    {'title': '사용자 경험 디자인', 'location': '은봉관 304호'},
+    {'title': '색채 응용 디자인', 'location': '은봉관 202호'},
+    {'title': '영상디자인', 'location': '덕관 202호'},
+    {'title': '이미지 크리에이션', 'location': '은봉관 302호'},
+    {'title': '시각적 발상과 표현', 'location': '인관 205호'},
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -16,14 +24,17 @@ class _LectureListingsPageState extends State<LectureListingsPage> {
       backgroundColor: Colors.black,
       appBar: AppBar(
         backgroundColor: Colors.black,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios, color: Colors.white),
-          onPressed: () {
-            Navigator.pop(context);
-          },
+        leading: Padding(
+          padding: const EdgeInsets.only(left: 25.0),
+          child: IconButton(
+            icon: const Icon(Icons.arrow_back_ios, color: Colors.white),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
         ),
         title: const Text(
-          '개설한 강의목록',
+          '      개설한 강의 목록',
           style: TextStyle(fontSize: 24, color: Colors.white),
         ),
       ),
@@ -32,8 +43,18 @@ class _LectureListingsPageState extends State<LectureListingsPage> {
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: const CustomTextField(
-              hintText: '강의명',
+              hintText: '검색하기',
               suffixIcon: Icon(Icons.search, color: Colors.black),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: const Text(
+                'tip. 초성 검색도 가능해요 ex) ㅁㄹㅎ > 물리학',
+                style: TextStyle(color: Colors.grey),
+              ),
             ),
           ),
           const SizedBox(height: 16.0), // 강의명 텍스트 필드와 강의명 컨테이너 사이의 간격
@@ -41,10 +62,13 @@ class _LectureListingsPageState extends State<LectureListingsPage> {
             child: ListView.builder(
               itemCount: lectures.length,
               itemBuilder: (context, index) {
-                return const Padding(
-                  padding:
-                      EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
-                  child: LectureItem(),
+                return Padding(
+                  padding: const EdgeInsets.symmetric(
+                      vertical: 8.0, horizontal: 16.0),
+                  child: LectureItem(
+                    title: lectures[index]['title']!,
+                    location: lectures[index]['location']!,
+                  ),
                 );
               },
             ),
@@ -62,7 +86,12 @@ class _LectureListingsPageState extends State<LectureListingsPage> {
                 child: IconButton(
                   icon: const Icon(Icons.delete, size: 36, color: Colors.white),
                   onPressed: () {
-                    // 요기에는 삭제 버튼 눌렀을 때의 동작 정의하기
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => LectureListingsDeletePage(),
+                      ),
+                    );
                   },
                 ),
               ),
@@ -73,4 +102,51 @@ class _LectureListingsPageState extends State<LectureListingsPage> {
     );
   }
 }
-// 그라데이션 효과 넣으려면 어떻게 해야하는지 모르겠어요..
+
+class LectureItem extends StatelessWidget {
+  final String title;
+  final String location;
+
+  const LectureItem({
+    required this.title,
+    required this.location,
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.black,
+        border: Border.all(color: Colors.white),
+        borderRadius: BorderRadius.circular(10.0),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0),
+        child: Row(
+          children: [
+            Expanded(
+              child: Text(
+                title,
+                style: const TextStyle(fontSize: 16, color: Colors.white),
+                textAlign: TextAlign.left,
+              ),
+            ),
+            Text(
+              '|',
+              style: const TextStyle(fontSize: 16, color: Colors.white),
+              textAlign: TextAlign.center,
+            ),
+            Expanded(
+              child: Text(
+                location,
+                style: const TextStyle(fontSize: 16, color: Colors.white),
+                textAlign: TextAlign.right,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

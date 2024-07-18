@@ -23,26 +23,12 @@ class _LectureItemState extends State<LectureItem> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const Text(
-              '강의명',
-              style: TextStyle(fontSize: 18, color: Colors.white),
-            ),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: _isSelected ? Colors.orange : Colors.grey,
-                foregroundColor: Colors.white,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: const Text(
+                '강의명                          |       집갈까 ',
+                style: TextStyle(fontSize: 20, color: Colors.white),
               ),
-              onPressed: () {
-                setState(() {
-                  _isSelected = !_isSelected;
-                });
-              },
-              child: _isSelected
-                  ? const Icon(Icons.check, color: Colors.white)
-                  : const Text('선택'),
             ),
           ],
         ),
