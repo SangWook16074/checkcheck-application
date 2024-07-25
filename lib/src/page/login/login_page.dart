@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:checkcheck_project/src/page/sign_up_page.dart';
+import 'package:checkcheck_project/src/page/login/sign_up_page.dart';
 import 'package:checkcheck_project/src/widget/custom_button.dart';
 import 'package:checkcheck_project/src/widget/custom_text_field.dart';
 

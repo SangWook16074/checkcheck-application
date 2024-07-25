@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../service/human_controller.dart';
+import '../../service/human_controller.dart';
 import 'package:checkcheck_project/src/widget/custom_button.dart';
 import 'package:checkcheck_project/src/widget/custom_text_field.dart';
 

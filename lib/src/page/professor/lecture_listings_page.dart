@@ -1,4 +1,4 @@
-import 'package:checkcheck_project/src/page/lecture_listings_delete_page.dart';
+import 'package:checkcheck_project/src/page/professor/lecture_listings_delete_page.dart';
 import 'package:flutter/material.dart';
 import 'package:checkcheck_project/src/widget/custom_text_field.dart';
 import 'package:checkcheck_project/src/widget/lecture_list_item.dart';
