@@ -1,6 +1,7 @@
 import 'package:checkcheck_project/src/page/lecture_listings_delete_page.dart';
 import 'package:flutter/material.dart';
 import 'package:checkcheck_project/src/widget/custom_text_field.dart';
+import 'package:checkcheck_project/src/widget/lecture_list_item.dart';
 
 class LectureListingsPage extends StatefulWidget {
   @override
@@ -57,7 +58,7 @@ class _LectureListingsPageState extends State<LectureListingsPage> {
               ),
             ),
           ),
-          const SizedBox(height: 16.0), // 강의명 텍스트 필드와 강의명 컨테이너 사이의 간격
+          const SizedBox(height: 16.0),
           Expanded(
             child: ListView.builder(
               itemCount: lectures.length,
@@ -65,7 +66,9 @@ class _LectureListingsPageState extends State<LectureListingsPage> {
                 return Padding(
                   padding: const EdgeInsets.symmetric(
                       vertical: 8.0, horizontal: 16.0),
-                  child: LectureItem(
+
+                  // 이부분을 위젯폴더 안에 분리했습니다
+                  child: LectureListItem(
                     title: lectures[index]['title']!,
                     location: lectures[index]['location']!,
                   ),
@@ -98,54 +101,6 @@ class _LectureListingsPageState extends State<LectureListingsPage> {
             ),
           ),
         ],
-      ),
-    );
-  }
-}
-
-class LectureItem extends StatelessWidget {
-  final String title;
-  final String location;
-
-  const LectureItem({
-    required this.title,
-    required this.location,
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.black,
-        border: Border.all(color: Colors.white),
-        borderRadius: BorderRadius.circular(10.0),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0),
-        child: Row(
-          children: [
-            Expanded(
-              child: Text(
-                title,
-                style: const TextStyle(fontSize: 16, color: Colors.white),
-                textAlign: TextAlign.left,
-              ),
-            ),
-            Text(
-              '|',
-              style: const TextStyle(fontSize: 16, color: Colors.white),
-              textAlign: TextAlign.center,
-            ),
-            Expanded(
-              child: Text(
-                location,
-                style: const TextStyle(fontSize: 16, color: Colors.white),
-                textAlign: TextAlign.right,
-              ),
-            ),
-          ],
-        ),
       ),
     );
   }
